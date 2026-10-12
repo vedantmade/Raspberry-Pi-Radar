@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pi Radar</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>Raspberry Pi Radar</h1>
+    <span id="mode" class="badge">connecting…</span>
+  </header>
+
+  <main>
+    <section class="screen">
+      <canvas id="radar" width="800" height="440"></canvas>
+    </section>
+
+    <aside class="panel">
+      <div class="stat"><span class="label">Angle</span><span id="angle" class="value">--</span></div>
+      <div class="stat"><span class="label">Distance</span><span id="distance" class="value">--</span></div>
+      <div class="stat"><span class="label">Nearest object</span><span id="nearest" class="value">--</span></div>
+      <div class="stat"><span class="label">Status</span><span id="status" class="value">--</span></div>
+
+      <div class="led-box">
+        <div class="led-head">
+          <span id="ledDot" class="led-dot" aria-hidden="true"></span>
+          <label for="ledEnabled"><input id="ledEnabled" type="checkbox"> Proximity LED</label>
+        </div>
+        <label for="ledThreshold">Light up below (cm):</label>
+        <input id="ledThreshold" type="number" min="2" max="200" value="30">
+        <span id="ledState" class="label">off</span>
+      </div>
+
+      <div class="controls">
+        <button id="startBtn">Start</button>
+        <button id="stopBtn" class="secondary">Stop</button>
+        <label for="speed">Step (degrees): <span id="speedVal">2</span></label>
+        <input id="speed" type="range" min="1" max="10" value="2">
+      </div>
+    </aside>
+  </main>
+
+  <footer>HC-SR04 + SG90 servo &middot; Flask on Apache (mod_wsgi)</footer>
+
+  <script>
+    // Base URL of the app, so API calls work whether Apache mounts it at / or /radar
+    window.API_BASE = "{{ request.script_root }}";
+  </script>
+  <script src="{{ url_for('static', filename='radar.js') }}"></script>
+</body>
+</html>

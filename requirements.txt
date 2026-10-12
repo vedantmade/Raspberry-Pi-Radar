@@ -1,0 +1,4 @@
+# On Raspberry Pi OS install these with apt instead (see README):
+#   sudo apt install python3-flask python3-gpiozero python3-lgpio
+flask>=2.2
+gpiozero>=2.0
