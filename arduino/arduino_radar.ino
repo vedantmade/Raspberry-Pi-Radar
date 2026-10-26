@@ -12,18 +12,18 @@
 const uint8_t SERVO_PIN = 9;
 const uint8_t TRIG_PIN = 10;
 const uint8_t ECHO_PIN = 11;
-const unsigned long SERIAL_BAUD = 115200;
-const unsigned long ECHO_TIMEOUT_US = 25000UL;
+const unsigned long SERIAL_BAUD = 9600;
+const unsigned long ECHO_TIMEOUT_US = 15000UL;
 const int MAX_DISTANCE_CM = 200;
 
 Servo radarServo;
 int angleDeg = 0;
 int direction = 1;
-int stepDeg = 2;
+int stepDeg = 3;
 bool scanning = true;
 String commandBuffer;
 unsigned long lastSampleMs = 0;
-const unsigned long SAMPLE_INTERVAL_MS = 80;
+const unsigned long SAMPLE_INTERVAL_MS = 40;
 
 int measureDistanceCm() {
   digitalWrite(TRIG_PIN, LOW);
